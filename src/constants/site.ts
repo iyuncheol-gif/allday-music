@@ -3,7 +3,7 @@ export const siteConfig = {
   description:
     "방배역 1분, 24시간 프리미엄 음악연습실. 월 단위 예약으로 나만의 연습 공간을 만들어보세요.",
   url: "https://allday-music.com",
-  ogImage: "/assets/img/og-image.png",
+  ogImage: "/img/4.jpg",
   keywords: [
     "음악연습실",
     "방배역 연습실",
