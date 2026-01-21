@@ -1,9 +1,11 @@
 import { amenities } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function Amenities() {
   return (
     <section className="py-12 md:py-20 bg-white border-y border-border-light">
-      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-6">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto px-4 md:px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {amenities.map((amenity) => (
             <div
@@ -19,7 +21,7 @@ export default function Amenities() {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

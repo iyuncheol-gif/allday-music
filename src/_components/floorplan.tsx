@@ -42,10 +42,14 @@ function FacilityCell({
   );
 }
 
+import ScrollAnimation from "./scroll-animation";
+
+// ... (other helper components like RoomCell, FacilityCell remain unchanged)
+
 export default function Floorplan() {
   return (
     <section className="py-12 md:py-24 px-4 md:px-6 bg-surface" id="floorplan">
-      <div className="w-full max-w-[1200px] mx-auto">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-16">
           <span className="text-primary font-bold tracking-wider text-xs md:text-sm uppercase mb-1 md:mb-2 block">
@@ -155,7 +159,7 @@ export default function Floorplan() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

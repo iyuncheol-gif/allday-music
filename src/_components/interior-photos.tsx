@@ -1,10 +1,12 @@
+import ScrollAnimation from "./scroll-animation";
+
 export default function InteriorPhotos() {
   return (
     <section
       className="py-12 md:py-24 bg-surface border-y border-border-light"
       id="interior-photos"
     >
-      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-6">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-text-main mb-2 md:mb-4">
@@ -70,7 +72,7 @@ export default function InteriorPhotos() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

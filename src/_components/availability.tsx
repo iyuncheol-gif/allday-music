@@ -1,12 +1,14 @@
 import { roomAvailability, siteConfig } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function Availability() {
   return (
     <section
       className="py-12 md:py-20 bg-slate-50 border-y border-border-light"
       id="availability"
     >
-      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-6">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4 md:gap-6">
           <div className="text-center md:text-left">
@@ -136,7 +138,7 @@ export default function Availability() {
             </a>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

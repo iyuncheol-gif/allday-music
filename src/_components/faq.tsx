@@ -1,9 +1,11 @@
 import { faqItems } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function FAQ() {
   return (
     <section className="py-12 md:py-24 px-4 md:px-6 bg-white" id="faq">
-      <div className="w-full max-w-2xl mx-auto flex flex-col gap-8 md:gap-12">
+      <ScrollAnimation className="w-full max-w-2xl mx-auto flex flex-col gap-8 md:gap-12">
         {/* Section Header */}
         <div className="text-center">
           <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-text-main mb-2 md:mb-4">
@@ -30,7 +32,7 @@ export default function FAQ() {
             </details>
           ))}
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

@@ -4,13 +4,15 @@ import {
   roomSoundproofing,
 } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function Facilities() {
   return (
     <section
       className="py-12 md:py-24 px-4 md:px-6 relative overflow-hidden bg-white"
       id="facilities"
     >
-      <div className="w-full max-w-[1200px] mx-auto">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-text-main mb-2 md:mb-4">
@@ -24,7 +26,7 @@ export default function Facilities() {
         {/* Facilities Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
           {/* Shared Facilities */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm border border-border-light flex flex-col h-full hover:border-primary/40 transition-all duration-300">
+          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm border border-border-light flex flex-col h-full hover:border-primary hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
             <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
                 <span className="material-symbols-outlined text-xl md:text-2xl">
@@ -53,7 +55,7 @@ export default function Facilities() {
           </div>
 
           {/* Room Facilities */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm border border-border-light flex flex-col h-full hover:border-primary/40 transition-all duration-300">
+          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm border border-border-light flex flex-col h-full hover:border-primary hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
             <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
                 <span className="material-symbols-outlined text-xl md:text-2xl">
@@ -113,7 +115,7 @@ export default function Facilities() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

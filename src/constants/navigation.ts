@@ -1,3 +1,5 @@
+import { siteConfig } from "./site";
+
 export const navItems = [
   { label: "시설", href: "#facilities" },
   { label: "월대여 장점", href: "#benefits" },
@@ -28,12 +30,13 @@ export const legalLinks = [
 export const socialLinks = [
   {
     name: "Instagram",
-    url: "#",
+    url: siteConfig.social.instagram,
     icon: "instagram",
   },
   {
     name: "Blog",
-    url: "#",
+    url: siteConfig.social.blog,
     icon: "blog",
   },
 ];
+

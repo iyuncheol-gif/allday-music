@@ -1,12 +1,14 @@
 import { roomTypes, siteConfig } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function Rooms() {
   return (
     <section
       className="py-12 md:py-24 px-4 md:px-6 bg-white border-y border-border-light"
       id="rooms"
     >
-      <div className="w-full max-w-[1200px] mx-auto">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-16">
           <span className="text-primary font-bold tracking-wider text-xs md:text-sm uppercase mb-1 md:mb-2 block">
@@ -22,19 +24,8 @@ export default function Rooms() {
           {roomTypes.map((room) => (
             <div
               key={room.id}
-              className={`bg-white rounded-2xl p-6 md:p-8 flex flex-col relative ${
-                room.isBest
-                  ? "border-2 border-primary shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] md:-translate-y-4"
-                  : "border border-border-light hover:border-primary/60 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]"
-              } transition-all duration-300 group`}
+              className="bg-white rounded-2xl p-6 md:p-8 flex flex-col relative border border-border-light hover:border-primary hover:shadow-[0_4px_20px_-2px_rgba(59,130,246,0.15)] hover:-translate-y-2 transition-all duration-300 group"
             >
-              {/* Best Choice Badge */}
-              {room.isBest && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-[10px] md:text-xs font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-full shadow-lg">
-                  BEST CHOICE
-                </div>
-              )}
-
               <div className="mb-4 md:mb-6">
                 <div className="flex justify-between items-start mb-2 md:mb-3">
                   <h3 className="text-lg md:text-xl font-bold text-text-main">
@@ -61,11 +52,7 @@ export default function Rooms() {
 
               <div className="mt-auto">
                 <a
-                  className={`block w-full text-center py-3 md:py-3.5 rounded-xl font-bold transition-colors text-sm md:text-base ${
-                    room.isBest
-                      ? "bg-primary text-white hover:bg-blue-600 shadow-lg shadow-primary/20"
-                      : "border border-primary text-primary hover:bg-primary hover:text-white"
-                  }`}
+                  className="block w-full text-center py-3 md:py-3.5 rounded-xl font-bold transition-colors text-sm md:text-base border border-primary text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/20"
                   href={siteConfig.social.naverTalk}
                   target="_blank"
                   rel="noreferrer"
@@ -76,7 +63,7 @@ export default function Rooms() {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

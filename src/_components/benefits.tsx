@@ -2,13 +2,15 @@
 
 import { benefits, siteConfig } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function Benefits() {
   return (
     <section
       className="py-12 md:py-20 bg-white border-y border-border-light"
       id="benefits"
     >
-      <div className="w-full max-w-[1200px] mx-auto">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-16 px-4 md:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-2 md:mb-3">
@@ -48,18 +50,18 @@ export default function Benefits() {
         {/* CTA Link */}
         <div className="mt-8 md:mt-12 text-center px-4 md:px-6">
           <a
-            className="inline-flex items-center gap-2 text-primary font-bold hover:underline cursor-pointer text-sm md:text-base"
+            className="inline-flex items-center gap-2 text-primary font-bold cursor-pointer text-sm md:text-base hover:text-blue-600 hover:scale-105 transition-all duration-300"
             href={siteConfig.social.naverTalk}
             target="_blank"
             rel="noreferrer"
           >
             네이버 톡톡으로 문의
-            <span className="material-symbols-outlined text-sm">
+            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">
               arrow_forward
             </span>
           </a>
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

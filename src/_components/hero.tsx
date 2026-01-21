@@ -12,10 +12,40 @@ export default function Hero() {
         <div className="absolute top-10 right-10 w-32 h-32 md:w-64 md:h-64 bg-purple-200/30 rounded-full mix-blend-multiply filter blur-2xl opacity-60 animate-blob animation-delay-4000" />
 
         {/* Background text - hidden on mobile */}
-        <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-0 opacity-[0.03] select-none overflow-hidden">
-          <span className="text-[15vw] font-black text-primary tracking-tighter leading-none whitespace-nowrap transform -rotate-6 scale-110">
-            ALLDAY MUSIC STUDIO
-          </span>
+        <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-0 opacity-10 select-none overflow-hidden">
+          <div className="transform -rotate-12 scale-150 flex flex-col gap-4">
+            {/* Top Row - Left */}
+            <div className="animate-marquee">
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                ALLDAY MUSIC STUDIO
+              </span>
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                ALLDAY MUSIC STUDIO
+              </span>
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                ALLDAY MUSIC STUDIO
+              </span>
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                ALLDAY MUSIC STUDIO
+              </span>
+            </div>
+
+            {/* Bottom Row - Right */}
+            <div className="animate-marquee-reverse">
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                PREMIUM PRACTICE ROOM
+              </span>
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                PREMIUM PRACTICE ROOM
+              </span>
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                PREMIUM PRACTICE ROOM
+              </span>
+              <span className="text-[12vw] font-black text-blue-300 tracking-tighter leading-none whitespace-nowrap px-8">
+                PREMIUM PRACTICE ROOM
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -65,31 +95,7 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <a
-              href={siteConfig.social.kakao}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#FAE100] text-[#371D1E] hover:bg-[#FCE620] h-12 md:h-14 px-6 md:px-8 rounded-xl text-sm md:text-base font-bold transition-all shadow-sm"
-            >
-              <span className="material-symbols-outlined text-xl md:text-2xl">
-                chat_bubble
-              </span>
-              카카오톡 문의
-            </a>
-            <a
-              href={siteConfig.social.naverTalk}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#03C75A] text-white hover:bg-[#02b351] h-12 md:h-14 px-6 md:px-8 rounded-xl text-sm md:text-base font-bold transition-all shadow-lg shadow-green-500/20"
-            >
-              <span className="material-symbols-outlined text-xl md:text-2xl">
-                chat_bubble
-              </span>
-              네이버 톡톡으로 문의
-            </a>
-          </div>
+
         </div>
       </div>
     </section>

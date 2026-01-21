@@ -1,12 +1,14 @@
 import { locationInfo, siteConfig } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function Location() {
   return (
     <section
       className="py-8 md:py-12 bg-surface border-b border-border-light"
       id="location"
     >
-      <div className="w-full max-w-[1200px] mx-auto">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12">
           {/* Info Section */}
           <div className="md:col-span-4 p-6 md:p-10 flex flex-col justify-center gap-6 md:gap-8 bg-white md:border-r border-border-light">
@@ -35,7 +37,12 @@ export default function Location() {
                 <span className="material-symbols-outlined text-primary text-lg md:text-xl">
                   phone
                 </span>
-                <p className="text-sm md:text-base">{locationInfo.phone}</p>
+                <a
+                  href={`tel:${locationInfo.phone}`}
+                  className="text-sm md:text-base hover:text-primary transition-colors font-medium"
+                >
+                  {locationInfo.phone}
+                </a>
               </div>
             </div>
 
@@ -85,7 +92,7 @@ export default function Location() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }

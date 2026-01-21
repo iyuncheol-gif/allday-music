@@ -14,7 +14,7 @@ export const siteConfig = {
     "서초구 연습실",
   ],
   contact: {
-    phone: "010-1234-5678",
+    phone: "050714220029",
     address: {
       full: "서울특별시 서초구 방배로10길 10-8 지층",
       street: "방배로10길 10-8 지층",
@@ -46,8 +46,8 @@ export const siteConfig = {
   social: {
     naverTalk:
       "https://talk.naver.com/ct/w5tb3g?frm=pblog&resizeTo=471%2C706",
-    kakao: "#",
-    instagram: "#",
-    blog: "#",
+    kakao: "https://open.kakao.com/o/s7Icz8Yf",
+    instagram: "https://www.instagram.com/allday.music_studio/?hl=ko",
+    blog: "https://blog.naver.com/alldaymusic_",
   },
 };

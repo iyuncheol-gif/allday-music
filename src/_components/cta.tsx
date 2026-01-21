@@ -1,5 +1,7 @@
 import { siteConfig } from "@/constants";
 
+import ScrollAnimation from "./scroll-animation";
+
 export default function CTA() {
   return (
     <section className="py-12 md:py-24 px-4 md:px-6 relative overflow-hidden bg-white">
@@ -8,7 +10,7 @@ export default function CTA() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
 
       {/* Content */}
-      <div className="w-full max-w-2xl mx-auto text-center relative z-10">
+      <ScrollAnimation className="w-full max-w-2xl mx-auto text-center relative z-10">
         <h2 className="text-3xl sm:text-4xl md:text-[56px] font-black text-text-main mb-4 md:mb-6 leading-tight">
           프리미엄한 연습실을
           <br />
@@ -44,7 +46,7 @@ export default function CTA() {
         <p className="text-xs md:text-sm font-medium text-text-muted border-t border-border-light pt-4 md:pt-6 inline-block">
           월 단위 예약만 가능 · 시간제/파트타임 불가
         </p>
-      </div>
+      </ScrollAnimation>
     </section>
   );
 }
