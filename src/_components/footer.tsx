@@ -8,14 +8,16 @@ import {
   legalLinks,
   socialLinks,
   locationInfo,
-} from "@/constants";
+import ScrollAnimation from "./scroll-animation";
+
+// ... (other imports remain unchanged)
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-[#f9fafb] border-t border-border-light pt-10 md:pt-16 pb-6 md:pb-8 px-4 md:px-6 text-slate-600">
-      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-8 md:gap-12">
+      <ScrollAnimation className="w-full max-w-[1200px] mx-auto flex flex-col gap-8 md:gap-12">
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-10">
           {/* Brand Section */}
@@ -109,7 +111,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
     </footer>
   );
 }
