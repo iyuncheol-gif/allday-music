@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ScrollAnimation from "./scroll-animation";
 
 export default function InteriorPhotos() {
@@ -19,57 +20,46 @@ export default function InteriorPhotos() {
 
         {/* Photo Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-4 h-auto md:h-[540px]">
-          {/* Main Large Photo */}
+          {/* Main Large Photo - 1.jpeg */}
           <div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl border border-border-light bg-white shadow-sm aspect-square md:aspect-auto">
-            <div className="absolute inset-0 bg-slate-50 flex items-center justify-center p-4 md:p-8 text-center transition-transform duration-700 group-hover:scale-105">
-              <span className="text-slate-400 font-bold text-sm md:text-lg uppercase tracking-wider">
-                PHOTO PLACEHOLDER
-                <br />- Main Studio Overview
-              </span>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0">
-              <p className="font-bold text-lg md:text-xl">메인 스튜디오</p>
-              <p className="text-xs md:text-sm text-white/90">
-                넓고 쾌적한 연습 환경
-              </p>
-            </div>
+            <Image
+              src="/img/1.jpeg"
+              alt="메인 스튜디오"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
           </div>
 
-          {/* Top Right Photos */}
+          {/* Top Right Photos - 2.jpeg */}
           <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-2xl border border-border-light bg-white shadow-sm aspect-[4/3] md:aspect-auto">
-            <div className="absolute inset-0 bg-slate-50 flex items-center justify-center p-4 text-center transition-transform duration-700 group-hover:scale-105">
-              <span className="text-slate-300 font-bold text-xs uppercase tracking-wider">
-                PHOTO PLACEHOLDER
-                <br />- Room Detail
-              </span>
-            </div>
+            <Image
+              src="/img/2.jpeg"
+              alt="연습실 내부 1"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
           </div>
 
+          {/* Top Right Photos - 3.jpeg */}
           <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-2xl border border-border-light bg-white shadow-sm aspect-[4/3] md:aspect-auto">
-            <div className="absolute inset-0 bg-slate-50 flex items-center justify-center p-4 text-center transition-transform duration-700 group-hover:scale-105">
-              <span className="text-slate-300 font-bold text-xs uppercase tracking-wider">
-                PHOTO PLACEHOLDER
-                <br />- Equipment View
-              </span>
-            </div>
+            <Image
+              src="/img/3.jpeg"
+              alt="연습실 내부 2"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
           </div>
 
-          {/* Bottom Wide Photo */}
+          {/* Bottom Wide Photo - 4.jpg */}
           <div className="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-2xl border border-border-light bg-white shadow-sm aspect-[2/1] md:aspect-auto">
-            <div className="absolute inset-0 bg-slate-50 flex items-center justify-center p-4 text-center transition-transform duration-700 group-hover:scale-105">
-              <span className="text-slate-300 font-bold text-xs md:text-sm uppercase tracking-wider">
-                PHOTO PLACEHOLDER
-                <br />- Wide Lounge &amp; Corridor
-              </span>
-            </div>
-            <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 z-10">
-              <span className="bg-white/90 backdrop-blur-sm px-2 md:px-3 py-1 rounded-full text-[10px] md:text-xs font-bold text-text-main opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                휴게 공간
-              </span>
-            </div>
+            <Image
+              src="/img/4.jpg"
+              alt="휴게 공간"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
           </div>
         </div>
       </ScrollAnimation>

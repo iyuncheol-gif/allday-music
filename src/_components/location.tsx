@@ -1,13 +1,66 @@
-import { locationInfo, siteConfig } from "@/constants";
+"use client";
 
+import { useRef } from "react";
+import Script from "next/script";
+import { locationInfo, siteConfig } from "@/constants";
 import ScrollAnimation from "./scroll-animation";
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 export default function Location() {
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  const initializeMap = () => {
+    if (window.kakao && window.kakao.maps) {
+      window.kakao.maps.load(() => {
+        if (!mapRef.current) return;
+
+        const options = {
+          center: new window.kakao.maps.LatLng(
+            siteConfig.contact.geo.latitude,
+            siteConfig.contact.geo.longitude
+          ),
+          level: 3,
+        };
+
+        const map = new window.kakao.maps.Map(mapRef.current, options);
+
+        // Marker position
+        const markerPosition = new window.kakao.maps.LatLng(
+          siteConfig.contact.geo.latitude,
+          siteConfig.contact.geo.longitude
+        );
+
+        // Create marker
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+        });
+
+        // Set marker on map
+        marker.setMap(map);
+
+        // Add zoom control
+        const zoomControl = new window.kakao.maps.ZoomControl();
+        map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+      });
+    }
+  };
+
   return (
     <section
       className="py-8 md:py-12 bg-surface border-b border-border-light"
       id="location"
     >
+      <Script
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35321cad3638593651bfcad0ea32bbc4&autoload=false"
+        strategy="afterInteractive"
+        onLoad={initializeMap}
+      />
+
       <ScrollAnimation className="w-full max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12">
           {/* Info Section */}
@@ -73,23 +126,7 @@ export default function Location() {
 
           {/* Map Section */}
           <div className="md:col-span-8 min-h-[300px] md:min-h-[400px] bg-slate-100 relative group overflow-hidden">
-            {/* Placeholder Map Background */}
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-              style={{
-                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSL5ovqs8M6UK-xLg4rpHjTZqgmXbX9tIjbWz1pF8SaccnMncmqXpThmjohFei418i9ko3sEntDLnt10GJdt6SFQvPrmqeDP9r6U-HcznLro7YktPTq5DWVS9FuHUYl4ow_HrprCCsCjW2hIWYjIVd4vJ_6ElPXKfSfPkF-8vDuW9eATlmX2VCO90cvJT0vHzoyxLjrAkM0R5PxtPqc5k90xvBo7t0jxjAD3itmsdJS6PTjssFGXbrB_ffHele-XgW_EKLdPPMabE')`,
-              }}
-            />
-
-            {/* Map Marker */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-              <span className="material-symbols-outlined text-primary text-4xl md:text-5xl drop-shadow-md">
-                location_on
-              </span>
-              <span className="bg-white px-2 md:px-3 py-0.5 md:py-1 rounded-full shadow-md text-[10px] md:text-xs font-bold text-text-main mt-0.5 md:mt-1">
-                ALLDAY MUSIC
-              </span>
-            </div>
+            <div ref={mapRef} className="w-full h-full min-h-[300px] md:min-h-[400px]" />
           </div>
         </div>
       </ScrollAnimation>

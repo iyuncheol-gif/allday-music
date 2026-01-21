@@ -24,8 +24,8 @@ export const siteConfig = {
       country: "KR",
     },
     geo: {
-      latitude: 37.4812,
-      longitude: 126.9826,
+      latitude: 37.4807376807759,
+      longitude: 126.998734738994,
     },
     landmark: "방배역 1번출구 | 백석예대 맞은편",
   },
