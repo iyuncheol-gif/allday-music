@@ -63,88 +63,88 @@ export default function Floorplan() {
           </p>
         </div>
 
-        {/* Floorplan - Horizontal Scroll on Mobile */}
-        <div className="w-full overflow-x-auto pb-4 no-scrollbar">
-          <div className="min-w-[700px] md:min-w-[800px] max-w-[900px] mx-auto bg-white p-4 md:p-8 rounded-3xl shadow-sm border border-border-light relative select-none">
-            <div className="flex flex-col gap-3 md:gap-4">
+        {/* Desktop View: Scrollable Map */}
+        <div className="hidden md:block w-full overflow-x-auto pb-4 no-scrollbar">
+          <div className="min-w-[800px] max-w-[900px] mx-auto bg-white p-8 rounded-3xl shadow-sm border border-border-light relative select-none">
+            <div className="flex flex-col gap-4">
               {/* Row 1 - Top rooms */}
-              <div className="grid grid-cols-6 gap-2 md:gap-3">
+              <div className="grid grid-cols-6 gap-3">
                 {floorplanRooms.row1.map((room) => (
                   <RoomCell
                     key={room.id}
                     id={room.id}
                     size={room.size}
-                    className="h-24 md:h-32"
+                    className="h-32"
                   />
                 ))}
               </div>
 
               {/* Main Grid */}
-              <div className="grid grid-cols-4 gap-3 md:gap-4">
+              <div className="grid grid-cols-4 gap-4">
                 {/* Column 1 - 301, 302, Shower/Toilet */}
-                <div className="flex flex-col gap-2 md:gap-3">
+                <div className="flex flex-col gap-3">
                   <RoomCell
                     id={floorplanRooms.col1[0].id}
                     size={floorplanRooms.col1[0].size}
-                    className="h-28 md:h-[152px]"
+                    className="h-[152px]"
                   />
                   <RoomCell
                     id={floorplanRooms.col1[1].id}
                     size={floorplanRooms.col1[1].size}
-                    className="h-56 md:h-[316px]"
+                    className="h-[316px]"
                   />
-                  <div className="grid grid-cols-2 gap-1.5 md:gap-2 h-16 md:h-24">
+                  <div className="grid grid-cols-2 gap-2 h-24">
                     <FacilityCell icon="shower" label="Shower" />
                     <FacilityCell icon="wc" label="Toilet" />
                   </div>
                 </div>
 
                 {/* Column 2 - Cabinet Area */}
-                <div className="border-2 border-slate-200 bg-slate-50 rounded-lg flex flex-col items-center py-3 md:py-4 px-2 h-auto">
-                  <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2 md:mb-4 tracking-wider">
+                <div className="border-2 border-slate-200 bg-slate-50 rounded-lg flex flex-col items-center py-4 px-2 h-auto">
+                  <span className="text-xs font-bold text-slate-500 uppercase mb-4 tracking-wider">
                     Cabinet Area
                   </span>
-                  <div className="w-full flex-1 flex flex-col gap-1 md:gap-2 opacity-50 justify-center">
+                  <div className="w-full flex-1 flex flex-col gap-2 opacity-50 justify-center">
                     {Array.from({ length: 11 }).map((_, i) => (
                       <div
                         key={i}
-                        className="h-5 md:h-8 w-full border border-slate-300 rounded bg-white"
+                        className="h-8 w-full border border-slate-300 rounded bg-white"
                       />
                     ))}
                   </div>
                 </div>
 
                 {/* Column 3 - 106, 105, 104, Elevator */}
-                <div className="flex flex-col gap-2 md:gap-3">
+                <div className="flex flex-col gap-3">
                   {floorplanRooms.col3.map((room) => (
                     <RoomCell
                       key={room.id}
                       id={room.id}
                       size={room.size}
-                      className="h-28 md:h-[152px]"
+                      className="h-[152px]"
                     />
                   ))}
-                  <div className="border-2 border-slate-200 bg-slate-100 rounded-lg h-16 md:h-24 flex flex-col items-center justify-center">
-                    <span className="material-symbols-outlined text-slate-400 mb-0.5 md:mb-1 text-lg md:text-xl">
+                  <div className="border-2 border-slate-200 bg-slate-100 rounded-lg h-24 flex flex-col items-center justify-center">
+                    <span className="material-symbols-outlined text-slate-400 mb-1 text-xl">
                       elevator
                     </span>
-                    <span className="text-[9px] md:text-xs font-bold text-slate-500 uppercase">
+                    <span className="text-xs font-bold text-slate-500 uppercase">
                       Elevator
                     </span>
                   </div>
                 </div>
 
                 {/* Column 4 - 107, 103, 102, 101, 100 */}
-                <div className="flex flex-col gap-2 md:gap-3">
+                <div className="flex flex-col gap-3">
                   {floorplanRooms.col4.map((room) => (
                     <RoomCell
                       key={room.id}
                       id={room.id}
                       size={room.size}
-                      className="h-28 md:h-[152px]"
+                      className="h-[152px]"
                     />
                   ))}
-                  <div className="flex gap-1.5 md:gap-2 h-16 md:h-24">
+                  <div className="flex gap-2 h-24">
                     {floorplanRooms.col4Bottom.map((room) => (
                       <RoomCell
                         key={room.id}
@@ -155,6 +155,76 @@ export default function Floorplan() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile View: Stacked Grid */}
+        <div className="block md:hidden w-full space-y-6">
+          {/* Section 1: Top Rooms */}
+          <div className="space-y-2">
+            <h3 className="text-sm font-bold text-text-muted flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Standard Rooms (A)
+            </h3>
+            <div className="grid grid-cols-3 gap-2">
+              {floorplanRooms.row1.map((room) => (
+                <RoomCell
+                  key={room.id}
+                  id={room.id}
+                  size={room.size}
+                  className="h-20"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Section 2: Large & Side Rooms */}
+          <div className="space-y-2">
+            <h3 className="text-sm font-bold text-text-muted flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Premium & Normal Rooms (B)
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {/* Mix from Col 1, Col 3, Col 4 */}
+              {floorplanRooms.col1.map((room) => (
+                <RoomCell key={room.id} id={room.id} size={room.size} className="h-24" />
+              ))}
+              {floorplanRooms.col3.map((room) => (
+                <RoomCell key={room.id} id={room.id} size={room.size} className="h-24" />
+              ))}
+              {floorplanRooms.col4.map((room) => (
+                <RoomCell key={room.id} id={room.id} size={room.size} className="h-24" />
+              ))}
+              {floorplanRooms.col4Bottom.map((room) => (
+                <RoomCell key={room.id} id={room.id} size={room.size} className="h-24" />
+              ))}
+            </div>
+          </div>
+
+          {/* Section 3: Facilities */}
+          <div className="bg-white p-4 rounded-2xl border border-border-light shadow-sm">
+            <h3 className="text-sm font-bold text-text-muted mb-3 flex items-center gap-2">
+              <span className="material-symbols-outlined text-base">info</span>
+              Facilities & Cabinets
+            </h3>
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              <FacilityCell icon="shower" label="Shower" />
+              <FacilityCell icon="wc" label="Toilet" />
+              <div className="border-2 border-slate-200 bg-slate-100 rounded-lg flex flex-col items-center justify-center p-2">
+                <span className="material-symbols-outlined text-slate-400 mb-0.5 text-lg">elevator</span>
+                <span className="text-[9px] font-bold text-slate-500 uppercase">Elevator</span>
+              </div>
+            </div>
+
+            {/* Cabinet Visual */}
+            <div className="border-2 border-slate-200 bg-slate-50 rounded-lg p-2">
+              <span className="text-[10px] font-bold text-slate-500 uppercase mb-2 block text-center">Cabinet Area</span>
+              <div className="flex gap-1 overflow-hidden">
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <div key={i} className="h-6 flex-1 border border-slate-300 rounded bg-white" />
+                ))}
               </div>
             </div>
           </div>

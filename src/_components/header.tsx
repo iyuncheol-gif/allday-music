@@ -85,12 +85,11 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-text-main"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle navigation"
-          aria-expanded={isMenuOpen}
+          className={`md:hidden text-text-main p-2 ${isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+          onClick={() => setIsMenuOpen(true)}
+          aria-label="Open navigation"
         >
-          {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          <MenuIcon />
         </button>
       </div>
 
@@ -103,25 +102,25 @@ export default function Header() {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed top-0 right-0 z-50 w-80 max-w-[85vw] h-full bg-white shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 z-50 w-80 max-w-[85vw] h-[100dvh] bg-white shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
-        <div className="flex flex-col h-full pt-16 pb-6 px-5">
+        <div className="flex flex-col h-[100dvh] pt-[calc(1rem+env(safe-area-inset-top))] pb-[calc(1.5rem+env(safe-area-inset-bottom))] px-5 bg-white relative overflow-y-auto">
           {/* Close Button */}
           <button
-            className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100"
+            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
             onClick={() => setIsMenuOpen(false)}
+            aria-label="Close navigation"
           >
             <CloseIcon className="text-text-main" />
           </button>
 
-          {/* Navigation Links */}
-          <div className="flex-1 space-y-1">
+          <div className="mt-12 flex-1 space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="block px-4 py-3 rounded-xl text-base font-medium text-text-main hover:bg-gray-100 transition-all duration-300"
+                className="block px-4 py-3 rounded-xl text-base font-medium text-text-main hover:bg-primary/10 hover:text-primary hover:pl-6 active:bg-primary/10 active:text-primary active:pl-6 transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

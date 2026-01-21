@@ -5,12 +5,11 @@ import {
   siteConfig,
   quickLinks,
   supportLinks,
-  legalLinks,
   socialLinks,
   locationInfo,
-import ScrollAnimation from "./scroll-animation";
+} from "@/constants";
 
-// ... (other imports remain unchanged)
+import ScrollAnimation from "./scroll-animation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -62,22 +61,6 @@ export default function Footer() {
                 Support
               </h4>
               {supportLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-text-muted hover:text-primary text-xs md:text-sm transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-
-            {/* Legal Links */}
-            <div className="flex flex-col gap-3 md:gap-4">
-              <h4 className="text-text-main font-bold text-sm md:text-base">
-                Legal
-              </h4>
-              {legalLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}

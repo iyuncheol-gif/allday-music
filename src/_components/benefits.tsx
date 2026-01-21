@@ -21,13 +21,13 @@ export default function Benefits() {
           </p>
         </div>
 
-        {/* Benefits - Horizontal scroll on mobile, Grid on desktop */}
-        <div className="overflow-x-auto no-scrollbar md:overflow-visible px-4 md:px-6">
-          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 w-max md:w-auto">
+        {/* Benefits - Vertical stack on mobile, Grid on desktop */}
+        <div className="px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {benefits.map((benefit) => (
               <div
                 key={benefit.title}
-                className="flex flex-col gap-3 md:gap-4 p-5 md:p-8 rounded-2xl bg-white border border-border-light hover:border-primary/50 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] transition-all group w-[280px] md:w-auto shrink-0"
+                className="flex flex-col gap-3 md:gap-4 p-5 md:p-8 rounded-2xl bg-white border border-border-light hover:border-primary/50 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] transition-all group w-full"
               >
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-surface flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined text-2xl md:text-[32px]">
