@@ -84,7 +84,7 @@ export default function InteriorPhotos() {
       if (imageWrapper) {
         imageWrapper.style.transform = `scale(${scale})`;
         imageWrapper.style.filter = `grayscale(${grayscaleValue}%)`;
-        imageWrapper.style.transition = "transform 0.3s ease-out, filter 0.3s ease-out";
+        // Removed transition to prevent jitter/fighting with scroll updates
       }
     });
   };
@@ -231,7 +231,7 @@ export default function InteriorPhotos() {
                   className="flex-none w-[85vw] md:w-[800px] aspect-[4/3] relative snap-center py-4"
                 >
                   <div
-                    className="img-wrapper w-full h-full relative rounded-2xl overflow-hidden shadow-lg border border-border-light bg-surface-card transition-transform duration-300 ease-out will-change-transform"
+                    className="img-wrapper w-full h-full relative rounded-2xl overflow-hidden shadow-lg border border-border-light bg-surface-card will-change-[transform,filter]"
                   >
                     <Image
                       src={`/img/${filename}`}
