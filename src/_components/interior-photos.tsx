@@ -6,9 +6,22 @@ import ScrollAnimation from "./scroll-animation";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 // Duplicate the items to create a seamless loop effect (prefix + original + suffix)
 // We use 3 sets: [Set A (Clone)] [Set B (Original)] [Set C (Clone)]
-const TOTAL_IMAGES = 16;
-const items = Array.from({ length: TOTAL_IMAGES });
-const TRIPLE_ITEMS = [...items, ...items, ...items]; // 3x check
+const IMAGE_FILES = [
+  "img01.jpeg",
+  "img02.jpeg",
+  "img04.jpeg",
+  "img05.jpeg",
+  "img07.jpeg",
+  "img08.jpeg",
+  "img09.jpeg",
+  "img10.jpeg",
+  "img11.jpeg",
+  "img13.jpeg",
+  "img14.jpeg",
+  "img15.jpeg",
+];
+const TOTAL_IMAGES = IMAGE_FILES.length;
+const TRIPLE_ITEMS = [...IMAGE_FILES, ...IMAGE_FILES, ...IMAGE_FILES]; // 3x check
 
 export default function InteriorPhotos() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -208,8 +221,8 @@ export default function InteriorPhotos() {
             onTouchStart={() => setIsPaused(true)}
             onTouchEnd={() => setIsPaused(false)}
           >
-            {TRIPLE_ITEMS.map((_, i) => {
-              // Calculate original index (0-15) from the expanded index
+            {TRIPLE_ITEMS.map((filename, i) => {
+              // Calculate original index from the expanded index
               const originalIndex = i % TOTAL_IMAGES;
               return (
                 <div
@@ -221,7 +234,7 @@ export default function InteriorPhotos() {
                     className="img-wrapper w-full h-full relative rounded-2xl overflow-hidden shadow-lg border border-border-light bg-surface-card transition-transform duration-300 ease-out will-change-transform"
                   >
                     <Image
-                      src={`/img/img${String(originalIndex + 1).padStart(2, "0")}.jpeg`}
+                      src={`/img/${filename}`}
                       alt={`연습실 내부 사진 ${originalIndex + 1}`}
                       fill
                       className="object-cover"
