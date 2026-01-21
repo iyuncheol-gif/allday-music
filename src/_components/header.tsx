@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { navItems, siteConfig } from "@/constants";
+import { SiNaver } from "react-icons/si";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 function MenuIcon({ className }: { className?: string }) {
   return (
@@ -67,9 +69,7 @@ export default function Header() {
             target="_blank"
             rel="noreferrer"
           >
-            <span className="material-symbols-outlined text-[18px]">
-              chat_bubble
-            </span>
+            <RiKakaoTalkFill className="text-[18px]" />
             카카오톡 문의
           </a>
           <a
@@ -78,7 +78,8 @@ export default function Header() {
             target="_blank"
             rel="noreferrer"
           >
-            <span className="hidden lg:inline">네이버 톡톡으로 문의</span>
+            <SiNaver className="text-[14px]" />
+            <span className="hidden lg:inline">네이버 톡톡 문의</span>
             <span className="lg:hidden">톡톡 문의</span>
           </a>
         </div>
@@ -136,7 +137,7 @@ export default function Header() {
               rel="noreferrer"
               className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#FAE100] text-[#371D1E] font-bold rounded-xl hover:bg-[#FCE620] transition-colors duration-300"
             >
-              <span className="material-symbols-outlined text-lg">chat</span>
+              <RiKakaoTalkFill className="text-xl" />
               카카오톡 문의
             </a>
             <a
@@ -145,10 +146,8 @@ export default function Header() {
               rel="noreferrer"
               className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#03C75A] text-white font-bold rounded-xl hover:bg-[#02b351] transition-colors duration-300"
             >
-              <span className="material-symbols-outlined text-lg">
-                chat_bubble
-              </span>
-              네이버 톡톡으로 문의
+              <SiNaver className="text-lg" />
+              네이버 톡톡 문의
             </a>
           </div>
         </div>

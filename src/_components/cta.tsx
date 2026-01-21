@@ -1,6 +1,8 @@
 import { siteConfig } from "@/constants";
 
 import ScrollAnimation from "./scroll-animation";
+import { SiNaver } from "react-icons/si";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 export default function CTA() {
   return (
@@ -28,7 +30,7 @@ export default function CTA() {
             target="_blank"
             rel="noreferrer"
           >
-            <span className="material-symbols-outlined mr-2">chat</span>
+            <RiKakaoTalkFill className="mr-2 text-xl" />
             카카오톡 문의
           </a>
           <a
@@ -37,8 +39,8 @@ export default function CTA() {
             target="_blank"
             rel="noreferrer"
           >
-            <span className="material-symbols-outlined mr-2">chat_bubble</span>
-            네이버 톡톡으로 문의
+            <SiNaver className="mr-2 text-lg" />
+            네이버 톡톡 문의
           </a>
         </div>
 

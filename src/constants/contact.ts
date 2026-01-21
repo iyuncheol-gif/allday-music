@@ -3,7 +3,7 @@ import { siteConfig } from "./site";
 export const contactMethods = [
   {
     type: "naver",
-    title: "네이버 톡톡으로 문의",
+    title: "네이버 톡톡 문의",
     description: "빠른 상담을 원하시면\n네이버 톡톡으로 문의하세요.",
     url: siteConfig.social.naverTalk,
     bgColor: "bg-[#03C75A]",

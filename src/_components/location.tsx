@@ -4,6 +4,8 @@ import { useRef } from "react";
 import Script from "next/script";
 import { locationInfo, siteConfig } from "@/constants";
 import ScrollAnimation from "./scroll-animation";
+import { SiNaver } from "react-icons/si";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 declare global {
   interface Window {
@@ -107,10 +109,8 @@ export default function Location() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="material-symbols-outlined text-lg">
-                  chat_bubble
-                </span>
-                네이버 톡톡으로 문의
+                <SiNaver className="text-lg" />
+                네이버 톡톡 문의
               </a>
               <a
                 className="w-full text-center bg-[#FAE100] text-[#371D1E] font-bold py-2.5 md:py-3 rounded-xl hover:bg-[#FCE620] transition-colors shadow-sm flex items-center justify-center gap-2 text-sm md:text-base"
@@ -118,7 +118,7 @@ export default function Location() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="material-symbols-outlined text-lg">chat</span>
+                <RiKakaoTalkFill className="text-xl" />
                 카카오톡 문의
               </a>
             </div>

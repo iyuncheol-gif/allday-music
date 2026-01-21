@@ -57,7 +57,7 @@ export default function Rooms() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  네이버 톡톡으로 문의
+                  네이버 톡톡 문의
                 </a>
               </div>
             </div>
