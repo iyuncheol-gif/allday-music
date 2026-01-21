@@ -64,7 +64,7 @@ export default function Header() {
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-2 lg:gap-3">
           <a
-            className="bg-[#FAE100] text-[#371D1E] hover:bg-[#FCE620] px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-bold transition-all inline-flex items-center gap-1.5"
+            className="bg-[#FAE100] text-[#371D1E] hover:bg-[#FCE620] w-[110px] lg:w-[140px] py-2 rounded-lg text-xs lg:text-sm font-bold transition-all inline-flex items-center justify-center gap-1.5"
             href={siteConfig.social.kakao}
             target="_blank"
             rel="noreferrer"
@@ -73,7 +73,7 @@ export default function Header() {
             카카오톡 문의
           </a>
           <a
-            className="bg-[#03C75A] text-white hover:bg-[#02b351] px-3 lg:px-5 py-2 rounded-lg text-xs lg:text-sm font-bold transition-all shadow-sm inline-flex items-center gap-1.5"
+            className="bg-[#03C75A] text-white hover:bg-[#02b351] w-[110px] lg:w-[140px] py-2 rounded-lg text-xs lg:text-sm font-bold transition-all shadow-sm inline-flex items-center justify-center gap-1.5"
             href={siteConfig.social.naverTalk}
             target="_blank"
             rel="noreferrer"
