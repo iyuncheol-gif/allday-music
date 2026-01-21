@@ -26,12 +26,16 @@ function RoomCell({
 function FacilityCell({
   icon,
   label,
+  className = "",
 }: {
   icon: string;
   label: string;
+  className?: string;
 }) {
   return (
-    <div className="border-2 border-slate-200 rounded-lg flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors p-2">
+    <div
+      className={`border-2 border-slate-200 rounded-lg flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors p-2 ${className}`}
+    >
       <span className="material-symbols-outlined text-slate-400 mb-0.5 md:mb-1 text-lg md:text-xl">
         {icon}
       </span>
@@ -86,12 +90,17 @@ export default function Floorplan() {
                   <RoomCell
                     id={floorplanRooms.col1[0].id}
                     size={floorplanRooms.col1[0].size}
-                    className="h-[152px]"
+                    className="h-[122px]"
+                  />
+                  <FacilityCell
+                    icon="kitchen"
+                    label="Pantry"
+                    className="h-20"
                   />
                   <RoomCell
                     id={floorplanRooms.col1[1].id}
                     size={floorplanRooms.col1[1].size}
-                    className="h-[316px]"
+                    className="h-[254px]"
                   />
                   <div className="grid grid-cols-2 gap-2 h-24">
                     <FacilityCell icon="shower" label="Shower" />
@@ -212,6 +221,7 @@ export default function Floorplan() {
             <div className="grid grid-cols-3 gap-2 mb-4">
               <FacilityCell icon="shower" label="Shower" />
               <FacilityCell icon="wc" label="Toilet" />
+              <FacilityCell icon="kitchen" label="Pantry" />
               <div className="border-2 border-slate-200 bg-slate-100 rounded-lg flex flex-col items-center justify-center p-2">
                 <span className="material-symbols-outlined text-slate-400 mb-0.5 text-lg">elevator</span>
                 <span className="text-[9px] font-bold text-slate-500 uppercase">Elevator</span>

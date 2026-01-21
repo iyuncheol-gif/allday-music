@@ -218,6 +218,5 @@ export const floorplanRooms = {
   ],
   col4Bottom: [
     { id: "101", size: "2.2x2.5" },
-    { id: "100", size: "2.2x2.5" },
   ],
 };
