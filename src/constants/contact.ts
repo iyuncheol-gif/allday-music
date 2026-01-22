@@ -129,18 +129,6 @@ export const roomTypes = [
   },
 ];
 
-// 빈 룸 현황 (실제로는 API에서 가져올 데이터)
-export const roomAvailability = [
-  { id: "101", type: "Premium", available: true },
-  { id: "102", type: "Premium", available: false },
-  { id: "103", type: "Standard", available: false },
-  { id: "201", type: "Basic", available: true },
-  { id: "202", type: "Basic", available: false },
-  { id: "203", type: "Basic", available: false },
-  { id: "301", type: "Duplex", available: true },
-  { id: "302", type: "Large", available: false },
-];
-
 // 이용 방법 단계
 export const usageSteps = [
   {
@@ -216,7 +204,5 @@ export const floorplanRooms = {
     { id: "103", size: "3.1x3.2" },
     { id: "102", size: "2.6x3.6" },
   ],
-  col4Bottom: [
-    { id: "101", size: "2.2x2.5" },
-  ],
+  col4Bottom: [{ id: "101", size: "2.2x2.5" }],
 };

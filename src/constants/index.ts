@@ -19,7 +19,6 @@ export {
   roomFacilities,
   roomSoundproofing,
   roomTypes,
-  roomAvailability,
   usageSteps,
   amenities,
   faqItems,

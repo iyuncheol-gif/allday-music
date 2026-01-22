@@ -1,8 +1,46 @@
-import { roomAvailability, siteConfig } from "@/constants";
+"use client";
 
+import { useEffect, useState } from "react";
+import { siteConfig } from "@/constants";
+import {
+  fetchRoomConfigs,
+  fetchReservations,
+  getRoomStatus,
+  formatDateKorean,
+  type RoomStatus,
+} from "@/lib/google-sheets";
 import ScrollAnimation from "./scroll-animation";
 
 export default function Availability() {
+  const [roomStatuses, setRoomStatuses] = useState<RoomStatus[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        // Room 시트와 Reservation 시트 동시에 가져오기
+        const [roomConfigs, reservations] = await Promise.all([
+          fetchRoomConfigs(),
+          fetchReservations(),
+        ]);
+
+        // 모든 룸의 상태 계산
+        const statuses = roomConfigs.map((config) =>
+          getRoomStatus(config, reservations),
+        );
+
+        setRoomStatuses(statuses);
+      } catch (error) {
+        console.error("Failed to load data:", error);
+        setRoomStatuses([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
   return (
     <section
       className="py-12 md:py-20 bg-slate-50 border-y border-border-light"
@@ -38,7 +76,7 @@ export default function Availability() {
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-slate-300" />
               <span className="text-xs md:text-sm font-medium text-text-muted">
-                예약 완료
+                예약중
               </span>
             </div>
           </div>
@@ -46,97 +84,145 @@ export default function Availability() {
 
         {/* Room Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-          {roomAvailability.map((room) =>
-            room.available ? (
-              // Available Room
+          {isLoading ? (
+            // 로딩 스켈레톤 (기본 15개)
+            Array.from({ length: 15 }).map((_, i) => (
               <div
-                key={room.id}
-                className="group bg-white rounded-2xl p-4 md:p-5 border border-border-light shadow-sm hover:border-green-500 hover:shadow-md transition-all relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-16 h-16 md:w-20 md:h-20 bg-green-50 rounded-bl-[80px] -mr-4 -mt-4 transition-transform group-hover:scale-110" />
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex justify-between items-start mb-2 md:mb-3">
-                    <div className="flex flex-col">
-                      <span className="text-[9px] md:text-[10px] font-bold text-text-muted uppercase tracking-wider mb-0.5">
-                        {room.type}
-                      </span>
-                      <span className="text-xl md:text-2xl font-black text-text-main">
-                        {room.id}
-                      </span>
-                    </div>
-                    <span className="bg-green-100 text-green-700 text-[10px] md:text-[11px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded-full">
-                      빈 방
-                    </span>
-                  </div>
-                  <div className="mt-auto pt-3 md:pt-4">
-                    <a
-                      className="flex items-center justify-center w-full py-2 md:py-2.5 bg-green-600 hover:bg-green-700 text-white text-xs md:text-sm font-bold rounded-lg transition-colors gap-1"
-                      href={siteConfig.social.naverTalk}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      문의하기
-                      <span className="material-symbols-outlined text-xs md:text-sm">
-                        chevron_right
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              // Reserved Room
-              <div
-                key={room.id}
-                className="bg-slate-50 rounded-2xl p-4 md:p-5 border border-border-light opacity-80 hover:opacity-100 transition-opacity"
+                key={i}
+                className="bg-white rounded-2xl p-4 md:p-5 border border-border-light animate-pulse"
               >
                 <div className="flex flex-col h-full">
                   <div className="flex justify-between items-start mb-2 md:mb-3">
-                    <div className="flex flex-col">
-                      <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
-                        {room.type}
-                      </span>
-                      <span className="text-xl md:text-2xl font-black text-slate-400">
-                        {room.id}
-                      </span>
+                    <div className="flex flex-col gap-1">
+                      <div className="h-3 w-12 bg-slate-200 rounded" />
+                      <div className="h-6 w-8 bg-slate-200 rounded" />
                     </div>
-                    <span className="bg-slate-200 text-slate-500 text-[10px] md:text-[11px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded-full">
-                      예약완료
-                    </span>
+                    <div className="h-5 w-12 bg-slate-200 rounded-full" />
                   </div>
                   <div className="mt-auto pt-3 md:pt-4">
-                    <button
-                      className="w-full py-2 md:py-2.5 bg-slate-200 text-slate-400 text-xs md:text-sm font-bold rounded-lg cursor-not-allowed"
-                      disabled
-                    >
-                      예약 마감
-                    </button>
+                    <div className="h-9 bg-slate-200 rounded-lg" />
                   </div>
                 </div>
               </div>
+            ))
+          ) : roomStatuses.length === 0 ? (
+            // 데이터 없음
+            <div className="col-span-full text-center py-8 text-text-muted">
+              룸 정보를 불러올 수 없습니다.
+            </div>
+          ) : (
+            // 실제 룸 카드
+            roomStatuses.map((status) =>
+              status.isAvailable ? (
+                // 빈 방
+                <div
+                  key={status.roomId}
+                  className="group bg-white rounded-2xl p-4 md:p-5 border border-border-light shadow-sm hover:border-green-500 hover:shadow-md transition-all relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-16 h-16 md:w-20 md:h-20 bg-green-50 rounded-bl-[80px] -mr-4 -mt-4 transition-transform group-hover:scale-110" />
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex justify-between items-start mb-2 md:mb-3">
+                      <div className="flex flex-col">
+                        <span className="text-[9px] md:text-[10px] font-bold text-text-muted uppercase tracking-wider mb-0.5">
+                          {status.type}
+                        </span>
+                        <span className="text-xl md:text-2xl font-black text-text-main">
+                          {status.roomId}
+                        </span>
+                      </div>
+                      <span className="bg-green-100 text-green-700 text-[10px] md:text-[11px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded-full">
+                        빈 방
+                      </span>
+                    </div>
+                    {/* 다음 예약 예정 표시 */}
+                    {status.nextStartDate && (
+                      <p className="text-[10px] md:text-xs text-amber-600 font-medium mb-2">
+                        {formatDateKorean(status.nextStartDate)} 부터 예약 예정
+                      </p>
+                    )}
+                    <div className="mt-auto pt-3 md:pt-4">
+                      <a
+                        className="flex items-center justify-center w-full py-2 md:py-2.5 bg-green-600 hover:bg-green-700 text-white text-xs md:text-sm font-bold rounded-lg transition-colors gap-1"
+                        href={siteConfig.social.naverTalk}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        문의하기
+                        <span className="material-symbols-outlined text-xs md:text-sm">
+                          chevron_right
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                // 예약중
+                <div
+                  key={status.roomId}
+                  className="group bg-slate-50 rounded-2xl p-4 md:p-5 border border-border-light hover:border-slate-300 transition-all"
+                >
+                  <div className="flex flex-col h-full">
+                    <div className="flex justify-between items-start mb-2 md:mb-3">
+                      <div className="flex flex-col">
+                        <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
+                          {status.type}
+                        </span>
+                        <span className="text-xl md:text-2xl font-black text-slate-400">
+                          {status.roomId}
+                        </span>
+                      </div>
+                      <span className="bg-slate-200 text-slate-500 text-[10px] md:text-[11px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded-full">
+                        예약중
+                      </span>
+                    </div>
+                    {/* 예약 가능일 표시 */}
+                    {status.currentEndDate && (
+                      <p className="text-[10px] md:text-xs text-slate-500 font-medium mb-2">
+                        {formatDateKorean(status.currentEndDate)} 이후 예약 가능
+                      </p>
+                    )}
+                    <div className="mt-auto pt-3 md:pt-4">
+                      <a
+                        className="flex items-center justify-center w-full py-2 md:py-2.5 bg-slate-300 hover:bg-slate-400 text-slate-600 hover:text-slate-700 text-xs md:text-sm font-bold rounded-lg transition-colors gap-1"
+                        href={siteConfig.social.naverTalk}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        상담하기
+                        <span className="material-symbols-outlined text-xs md:text-sm">
+                          chevron_right
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ),
             )
           )}
 
           {/* Visit Reservation CTA */}
-          <div className="col-span-2 sm:col-span-1 bg-primary/5 rounded-2xl p-4 md:p-5 border border-primary/20 flex flex-col justify-center items-center text-center hover:bg-primary/10 transition-colors cursor-pointer group">
-            <a
-              className="w-full h-full flex flex-col justify-center items-center py-2"
-              href={siteConfig.social.naverTalk}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-primary flex items-center justify-center mb-2 md:mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-lg md:text-xl">
-                  calendar_month
-                </span>
-              </div>
-              <h4 className="font-bold text-primary mb-0.5 md:mb-1 text-sm md:text-base">
-                방문 예약하기
-              </h4>
-              <p className="text-[10px] md:text-xs text-text-muted">
-                직접 보고 결정하세요
-              </p>
-            </a>
-          </div>
+          {!isLoading && roomStatuses.length > 0 && (
+            <div className="col-span-2 sm:col-span-1 bg-primary/5 rounded-2xl p-4 md:p-5 border border-primary/20 flex flex-col justify-center items-center text-center hover:bg-primary/10 transition-colors cursor-pointer group">
+              <a
+                className="w-full h-full flex flex-col justify-center items-center py-2"
+                href={siteConfig.social.naverTalk}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-primary flex items-center justify-center mb-2 md:mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-lg md:text-xl">
+                    calendar_month
+                  </span>
+                </div>
+                <h4 className="font-bold text-primary mb-0.5 md:mb-1 text-sm md:text-base">
+                  방문 예약하기
+                </h4>
+                <p className="text-[10px] md:text-xs text-text-muted">
+                  직접 보고 결정하세요
+                </p>
+              </a>
+            </div>
+          )}
         </div>
       </ScrollAnimation>
     </section>
