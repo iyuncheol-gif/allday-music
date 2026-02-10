@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "ALLDAY MUSIC STUDIO",
   description:
     "방배역 1분, 24시간 프리미엄 음악연습실. 월 단위 예약으로 나만의 연습 공간을 만들어보세요.",
-  url: "https://allday-music.com",
+  url: "https://alldaymusic.co.kr",
   ogImage: "/img/img02.jpeg",
   keywords: [
     "음악연습실",
